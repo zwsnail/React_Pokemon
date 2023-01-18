@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import { SearchPokemon } from "./search-panel/search-panel-component";
 import { PokemonList } from "./list/list-component";
-import { PreviousNextList } from "./previous-next-list/previous-next-component";
-import { useMount } from "utils";
+import { Footer } from "./footer/index";
 
 export const PokemonIndex = () => {
     const [pokemon, setPokemon] = useState([]);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
-    const [nextUrl, setNextUrl] = useState('');
-    const [previousUrl, setPreviousUrl] = useState('');
     const [offset, setOffset] = useState(0);
+    const [currentOffset, setCurrentOffset] = useState(0);
 
     const loadPokemon = () => {
+        console.log("offset - 1", offset);
         fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`)
             .then(response => response.json())
             .then(json => {
@@ -31,15 +30,79 @@ export const PokemonIndex = () => {
                 setPokemon(json.results)
                 setFilteredPokemons(json.results)
             });
-        setOffset(offset + 10);
+        // setOffset(offset + 10);
+        setOffset(offset => offset + 10);
+        console.log("offset - 2", offset);
+    }
+
+    const load = () => {
+        const newPockemon = [];
+        console.log("currentOffset - 1", currentOffset);
+        fetch(`https://pokeapi.co/api/v2/pokemon?offset=${currentOffset}&limit=10`)
+            .then(response => response.json())
+            .then(json => {
+                json.results.forEach(p => {
+                    const id = p.url.split('/')[6];
+                    p.id = id;
+                    newPockemon.push(p);
+                })
+                setPokemon([...pokemon, ...newPockemon]);
+                setFilteredPokemons([...pokemon, ...newPockemon]);
+            })
+        // currentOffset += 10;
+        setCurrentOffset(currentOffset + 10);
+        // setCurrentOffset(currentOffset => currentOffset + 10);
+        console.log("currentOffset - 3", currentOffset);
+    }
+    const load3 = () => {
+        const newPockemon = [];
+        console.log("offset - 1", offset);
+        // setOffset(offset => offset + 10);
+        console.log("offset - 2", offset);
+        fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`)
+            .then(response => response.json())
+            .then(json => {
+                json.results.forEach(p => {
+                    const id = p.url.split('/')[6];
+                    p.id = id;
+                    newPockemon.push(p);
+                })
+                setPokemon([...pokemon, ...newPockemon]);
+                setFilteredPokemons([...pokemon, ...newPockemon]);
+            })
+        // currentOffset += 10;
+        setOffset(offset => offset + 10);
+        console.log("offset - 3", offset);
+    }
+
+    let currentOffset2 = 0;
+
+    const load2 = () => {
+        const newPockemon = [];
+        console.log("currentOffset2 - 1", currentOffset2);
+        fetch(`https://pokeapi.co/api/v2/pokemon?offset=${currentOffset2}&limit=10`)
+            .then(response => response.json())
+            .then(json => {
+                json.results.forEach(p => {
+                    const id = p.url.split('/')[6];
+                    p.id = id;
+                    newPockemon.push(p);
+                })
+                setPokemon([...pokemon, ...newPockemon]);
+                setFilteredPokemons([...pokemon, ...newPockemon]);
+            })
+        currentOffset2 += 10;
+
+        console.log("currentOffset2 - 2", currentOffset2);
     }
 
     useEffect(() => {
-        loadPokemon();
+        // loadPokemon();
+        load();
     }, []);
 
     const loadMorePokemon = () => {
-        console.log(offset);
+        console.log("offset - 1", offset);
         fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`)
             .then(response => response.json())
             .then(anotherNewPokemons => {
@@ -54,7 +117,9 @@ export const PokemonIndex = () => {
                 setFilteredPokemons(pokemon => [...pokemon, ...emptyArray]);
 
             });
-        setOffset(offset => offset + 10);
+        // setOffset(offset => offset + 10);
+        setOffset(offset + 10);
+        console.log("offset - 2", offset);
     }
 
     const onChangeHandler = (event) => {
@@ -63,14 +128,16 @@ export const PokemonIndex = () => {
         const comparedPokemons = pokemon.filter((pokemon) => {
             return pokemon.name.includes(event.target.value);
         })
-        setFilteredPokemons(comparedPokemons);
+        setTimeout(() => {
+            setFilteredPokemons(comparedPokemons);
+        }, 300);
     }
 
     return (
         <div>
             <SearchPokemon onChangeHandler={onChangeHandler} />
-            <PokemonList PokemonLists={filteredPokemons} loadMorePokemon={loadMorePokemon} />
-            <PreviousNextList nextUrl={nextUrl} previousUrl={previousUrl} onClickPreNexHandler={useMount} />
+            <PokemonList PokemonLists={filteredPokemons} loadMorePokemon={load} />
+            <Footer />
         </div>
     );
 };
