@@ -1,8 +1,18 @@
-import styles from './search-panel.module.scss';
+import { Input } from 'antd';
+import styled from 'styled-components'
 
 export const SearchPokemon = ({ onChangeHandler }) => {
-    return (<div className={styles.searchDiv}>
+    return (<Wrapper>
         <h1>Search Your Favorite Pokemon</h1>
-        <input type="search" onChange={onChangeHandler} placeholder="Search..." />
-    </div>);
+        <ShorterInput onChange={onChangeHandler} placeholder="Search..." />
+    </Wrapper>);
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  padding: 4em;
+  background: papayawhip;
+`;
+const ShorterInput = styled(Input)`
+  width: 50%;
+`;
