@@ -13,6 +13,6 @@ const FooterDiv = styled.div`
     display: block;
     margin-top: auto;
     padding: 12px 0;
-    background: #e16e6e;
+    background: var(--bg-primary);
     text-align: center;
 `;

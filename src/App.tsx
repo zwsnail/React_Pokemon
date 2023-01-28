@@ -1,7 +1,7 @@
 import { PokemonIndex } from "./components";
 import "./App.css";
 import { Timer } from "./components/test";
-import { Footer } from "./components/footer/index";
+import { Footer } from "./components/footer";
 
 function App() {
   return (
