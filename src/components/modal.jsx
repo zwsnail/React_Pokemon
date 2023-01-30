@@ -3,7 +3,6 @@ import { Card, Image, Avatar, Modal, Progress } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined, StarOutlined } from '@ant-design/icons';
 import { searchIcon } from '../utils/search-icon';
 import styled from 'styled-components';
-import useFetch from "utils/fetch";
 
 const { Meta } = Card;
 
@@ -31,11 +30,6 @@ export const PokemonModal = (props) => {
         }
     }
 
-    //     const card_head = {.ant - card - head {
-    //         background: var(--bg - poke - color - light - ${ pokemon.types[0].type.name });
-    // }
-    //     }
-
     return (
 
         <>
@@ -44,9 +38,6 @@ export const PokemonModal = (props) => {
                     bordered={false}
                     hoverable={true}
                     style={{
-                        // height: "80px",
-                        // width: 450,
-                        // padding: 12,
                         boxShadow: "none",
                         borderRadius: 0,
                         backgroundColor: `var(--bg-poke-color-light-${pokemon.types[0].type.name})`,
@@ -57,8 +48,7 @@ export const PokemonModal = (props) => {
                             style={{
                                 width: 50,
                                 borderRadius: 100,
-                            }
-                            }
+                            }}
                             alt={pokemon.types.map(t => t.type.name).join(', ')}
                             src={searchIcon(pokemon.types[0].type.name)}
                         />

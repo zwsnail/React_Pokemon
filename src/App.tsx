@@ -1,6 +1,5 @@
 import { PokemonIndex } from "./components";
 import "./App.css";
-import { Timer } from "./components/test";
 import { Footer } from "./components/footer";
 
 function App() {
@@ -8,7 +7,6 @@ function App() {
     <>
       <div className="App">
         <PokemonIndex />
-        {/* <Timer /> */}
       </div>
       <Footer />
     </>

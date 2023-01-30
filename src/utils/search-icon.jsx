@@ -42,9 +42,6 @@ export function searchIcon(search) {
 
     if (search) {
         search = Object.entries(icons).filter(icon => icon[0] === search);
-
-        console.log(search[0][1])
-
         return search[0][1];
     }
 }

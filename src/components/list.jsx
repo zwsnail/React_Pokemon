@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Card, List, Image, Button, Avatar, Modal } from 'antd';
+import { CloseSquareOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { searchIcon } from '../utils/search-icon';
 import { PokemonModal } from './modal';
@@ -15,10 +16,13 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
         setIsModalOpen(false);
     };
 
-    const handleClick = (pokemon) => {
+    const handleClick = (pokemon, e) => {
+        e.preventDefault()
         setSelectedPokemon(pokemon)
         setIsModalOpen(true);
+        document.body.style.overflow = 'hidden';
     }
+
 
     return (
         <>
@@ -41,20 +45,14 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                         emptyText: (<span>
                             <h2>Opoos~<br /> _(:з」∠)_ <br /><b>No Pokemon Found</b></h2>
                             {/* <Button>do something</Button> */}
-                            <Image preview={false} src={NoDataImage} style={{ marginTop: 10, borderRadius: 10 }} />
+                            <Image preview={false} src={NoDataImage} style={{ marginTop: 10, borderRadius: 22 }} />
                         </span>)
                     }}
                     renderItem={(pokemon) =>
                     (
                         <List.Item>
 
-                            {selectedPokemon === pokemon &&
-                                <Modal open={isModalOpen} onCancel={handleCancel} footer={null}>
-                                    <PokemonModal selectedPokemon={selectedPokemon} key={pokemon.url} />
-                                </Modal>
-                            }
-
-                            <a onClick={() => handleClick(pokemon)} href="#">
+                            <a onClick={(e) => handleClick(pokemon, e)} href="#">
                                 <Card
                                     style={{ backgroundColor: `var(--bg-poke-color-light-${pokemon.types[0].type.name})`, }}
                                     hoverable
@@ -80,21 +78,28 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                                     }
                                 >
                                     <Meta
-
                                         avatar={<Avatar src={PokeballImage} alt="avatar" />}
                                         title={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
                                     />
                                 </Card>
                             </a>
+
+                            {selectedPokemon === pokemon &&
+                                <Modal centered={true} open={isModalOpen} onCancel={handleCancel} footer={null} width={450} >
+                                    <PokemonModal selectedPokemon={selectedPokemon} key={pokemon.url} />
+                                </Modal>
+                            }
                         </List.Item>
                     )}
                 />
             </Wrapper>
 
-            {comparedPokemons.length >= 1 &&
+            {
+                comparedPokemons.length >= 1 &&
                 <LoadMoreButtonWrap>
                     <Button type="primary" value="large" onClick={loadMorePokemon}>Load More</Button>
-                </LoadMoreButtonWrap>}
+                </LoadMoreButtonWrap>
+            }
         </>
     );
 }
