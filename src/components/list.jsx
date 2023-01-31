@@ -20,15 +20,8 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
         e.preventDefault()
         setSelectedPokemon(pokemon)
         setIsModalOpen(true);
-        document.body.style.overflow = 'hidden';
+        // document.body.style.overflow = 'hidden';
     }
-
-    let modalWidth = 350;
-    var widthWin = window.document.body.clientWidth;
-    widthWin > 500 ? modalWidth = 450 : modalWidth = 350;
-    console.log(modalWidth);
-    console.log("widthWin: " + widthWin);
-
 
     return (
         <>
@@ -91,7 +84,7 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                             </a>
 
                             {selectedPokemon === pokemon &&
-                                <Modal centered={true} open={isModalOpen} onCancel={handleCancel} footer={null} width={modalWidth} >
+                                <Modal centered={true} open={isModalOpen} onCancel={handleCancel} footer={null} width={400}>
                                     <PokemonModal selectedPokemon={selectedPokemon} key={pokemon.url} />
                                 </Modal>
                             }
@@ -162,7 +155,6 @@ const LoadMoreButtonWrap = styled.div`
 const Wrapper = styled.div`
     width: 100%;
     padding: 7% 15%;
-    /* background: papayawhip; */
     flex: 1;
 `;
 
