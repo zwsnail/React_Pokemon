@@ -23,6 +23,9 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
         document.body.style.overflow = 'hidden';
     }
 
+    let modalWidth = 300;
+    window.innerHeight > 500 ? modalWidth = 450 : modalWidth = 300;
+
 
     return (
         <>
@@ -85,7 +88,7 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                             </a>
 
                             {selectedPokemon === pokemon &&
-                                <Modal centered={true} open={isModalOpen} onCancel={handleCancel} footer={null} width={450} >
+                                <Modal centered={true} open={isModalOpen} onCancel={handleCancel} footer={null} width={modalWidth} >
                                     <PokemonModal selectedPokemon={selectedPokemon} key={pokemon.url} />
                                 </Modal>
                             }

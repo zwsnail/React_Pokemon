@@ -46,7 +46,7 @@ export const PokemonModal = (props) => {
                     extra={
                         <img
                             style={{
-                                width: 50,
+                                maxWidth: 50,
                                 borderRadius: 100,
                             }}
                             alt={pokemon.types.map(t => t.type.name).join(', ')}
@@ -60,14 +60,7 @@ export const PokemonModal = (props) => {
                         //     alt="example"
                         //     src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                         // />
-                        <div style={{
-                            height: 80,
-                            // width: "100%",
-                            backgroundColor: `var(--bg-poke-color-dark-${pokemon.types[0].type.name})`,
-                            fontSize: 30,
-                            // paddingTop: 20
-                        }}
-                        >
+                        <div className="coverWrapper" style={{ backgroundColor: `var(--bg-poke-color-dark-${pokemon.types[0].type.name})` }} >
                         </div >
                     }
                 // actions={
@@ -85,7 +78,14 @@ export const PokemonModal = (props) => {
                         }}
                         avatar={
                             <Avatar
-                                size={180}
+                                size={{
+                                    xs: 120,
+                                    sm: 180,
+                                    md: 180,
+                                    lg: 180,
+                                    xl: 180,
+                                    xxl: 180,
+                                }}
                                 style={{
                                     marginTop: -100,
                                     marginBottom: 15,
@@ -98,11 +98,8 @@ export const PokemonModal = (props) => {
                         description={<p><b>Base Experience:</b> {pokemon.base_experience} <br /> <b>Types:</b> {pokemon.types.map(t => t.type.name).join(', ')}</p>}
                     />
 
-                    <div style={{
-                        display: 'flex', flexDirection: 'row', justifyContent: 'space-between',
-                        marginTop: 30
-                    }}>
-                        <div style={{ flex: "auto", display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <ProgressAbilityDiv>
+                        <div className="abilityWrapper">
                             <h3 style={{}}>Abilities</h3>
                             {pokemon.abilities.map(a =>
                                 <li key={a.id}>- {a.ability.name}</li>
@@ -128,7 +125,7 @@ export const PokemonModal = (props) => {
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </ProgressAbilityDiv>
 
 
                 </CardWrap >
@@ -139,8 +136,40 @@ export const PokemonModal = (props) => {
 }
 
 const CardWrap = styled(Card)`
-  .ant-card-head-wrapper {
-    margin-top: 15px;
-  }
 
+    .ant-card-head-wrapper {
+        margin-top: 15px;
+    }
+
+  .coverWrapper {
+    height: 80px;
+    }
+
+`;
+
+const ProgressAbilityDiv = styled.div`
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     margin-top: 30;
+
+    .abilityWrapper {
+         flex: auto; 
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start; 
+    }
+    
+
+    @media screen and (max-width: 575px) {
+        display: flex;
+        flex-direction: column;
+
+        .abilityWrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+    }
 `;
