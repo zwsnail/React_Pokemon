@@ -8,7 +8,7 @@ const { Meta } = Card;
 
 export const PokemonModal = (props) => {
 
-    const pokemon = props.selectedPokemon
+    const pokemon = props.selectedPokemon ?? '';
     const titleCard = `Height:${pokemon.height}  |  Weight:${pokemon.weight}`;
 
     const getColorByStat = (name) => {
@@ -33,7 +33,7 @@ export const PokemonModal = (props) => {
     return (
 
         <>
-            {pokemon &&
+            {(pokemon && pokemon.id && pokemon.types && pokemon.name && pokemon.abilities && pokemon.stats && pokemon.name) &&
                 <CardWrap
                     bordered={false}
                     hoverable={true}
