@@ -43,9 +43,39 @@ body {
     0 9px 28px 8px rgb(0 0 0 / 50%) !important;
 }
 
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-card .ant-card-meta-avatar {
+  padding-inline-end: 0px;
+}
+
 @media screen and (max-width: 575px) {
-  .ant-modal-content {
+  .ant-modal-body {
     font-size: 0.8em !important;
+  }
+
+  .ant-modal-content {
+    padding: 1.5rem !important;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .ant-card {
+    font-size: 1em !important;
+  }
+
+  .ant-card-extra img {
+    width: 30px !important;
+  }
+
+  .ant-card-head-title {
+    font-size: 11px !important;
+  }
+
+  .ant-card-body {
+    padding-bottom: 5px !important;
+  }
+
+  .ant-avatar ant-avatar-circle ant-avatar-image {
+    margin-bottom: 0px !important;
   }
 }
 

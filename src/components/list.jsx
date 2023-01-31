@@ -23,8 +23,11 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
         document.body.style.overflow = 'hidden';
     }
 
-    let modalWidth = 300;
-    window.innerHeight > 500 ? modalWidth = 450 : modalWidth = 300;
+    let modalWidth = 350;
+    var widthWin = window.document.body.clientWidth;
+    widthWin > 500 ? modalWidth = 450 : modalWidth = 350;
+    console.log(modalWidth);
+    console.log("widthWin: " + widthWin);
 
 
     return (

@@ -46,7 +46,7 @@ export const PokemonModal = (props) => {
                     extra={
                         <img
                             style={{
-                                maxWidth: 50,
+                                width: 50,
                                 borderRadius: 100,
                             }}
                             alt={pokemon.types.map(t => t.type.name).join(', ')}
@@ -143,8 +143,19 @@ const CardWrap = styled(Card)`
 
   .coverWrapper {
     height: 80px;
+  }
+  @media screen and (max-width: 575px) {
+    .coverWrapper {
+        height: 50px;
     }
-
+    .ant-card-head-wrapper {
+        margin-top: -20px !important;
+    }
+    .ant-avatar-image  {
+        margin-top: -90px !important;
+        margin-bottom: 0px !important;
+    }
+   }
 `;
 
 const ProgressAbilityDiv = styled.div`
