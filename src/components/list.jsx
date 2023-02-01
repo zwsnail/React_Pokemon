@@ -51,7 +51,7 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                     (
                         <List.Item>
 
-                            <a onClick={(e) => handleClick(pokemon, e)} href="#">
+                            <div onClick={(e) => handleClick(pokemon, e)} >
                                 <Card
                                     style={{ backgroundColor: `var(--bg-poke-color-light-${pokemon.types[0].type.name})`, }}
                                     hoverable
@@ -81,7 +81,7 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                                         title={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
                                     />
                                 </Card>
-                            </a>
+                            </div>
 
                             {selectedPokemon === pokemon &&
                                 <Modal centered={true} open={isModalOpen} onCancel={handleCancel} footer={null} width={400}>
