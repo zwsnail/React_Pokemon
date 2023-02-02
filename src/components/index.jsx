@@ -56,7 +56,7 @@ export const PokemonIndex = () => {
     return (
         <>
             <SearchPokemon onChangeHandler={onChangeHandler} totalPokemon={totalPokemon} />
-            <PokemonList PokemonLists={filteredPokemon} loadMorePokemon={loadMorePokemon} comparedPokemons={comparedPokemons} />
+            {pokemon && <PokemonList PokemonLists={filteredPokemon} loadMorePokemon={loadMorePokemon} comparedPokemons={comparedPokemons} />}
         </>
     );
 };

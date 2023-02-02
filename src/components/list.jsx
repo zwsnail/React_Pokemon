@@ -23,6 +23,17 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
         // document.body.style.overflow = 'hidden';
     }
 
+
+    const locale = {
+        emptyText: (
+            <span>
+                <h2>Opoos~<br /> _(:з」∠)_ <br /><b>No Pokemon Found</b></h2>
+                {/* <Button>do something</Button> */}
+                <Image preview={false} src={NoDataImage} style={{ marginTop: 10, borderRadius: 22 }} />
+            </span>)
+    }
+
+
     return (
         <>
             <Wrapper>
@@ -40,13 +51,7 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                     itemLayout='horizontal'
                     size='small'
                     rowKey={(pokemon) => pokemon.id}
-                    locale={{
-                        emptyText: (<span>
-                            <h2>Opoos~<br /> _(:з」∠)_ <br /><b>No Pokemon Found</b></h2>
-                            {/* <Button>do something</Button> */}
-                            <Image preview={false} src={NoDataImage} style={{ marginTop: 10, borderRadius: 22 }} />
-                        </span>)
-                    }}
+                    locale={locale}
                     renderItem={(pokemon) =>
                     (
                         <List.Item>
