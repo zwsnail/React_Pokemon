@@ -40,7 +40,7 @@ export const PokemonList = ({ PokemonLists, loadMorePokemon, comparedPokemons })
                 <List
                     grid={{
                         gutter: 0,
-                        xs: 1,
+                        xs: 2,
                         sm: 2,
                         md: 4,
                         lg: 4,
@@ -161,6 +161,14 @@ const Wrapper = styled.div`
     width: 100%;
     padding: 7% 15%;
     flex: 1;
+
+    @media screen and (max-width: 575px) {
+        padding: 5% 1%;
+
+        /* .ant-list{
+            width: 50%;
+        } */
+    }
 `;
 
 const ImageWrap = styled(Image)`
