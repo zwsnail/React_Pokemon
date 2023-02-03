@@ -79,7 +79,7 @@ export const PokemonModal = (props) => {
                         avatar={
                             <Avatar
                                 size={{
-                                    xs: 120,
+                                    xs: "90%",
                                     sm: 180,
                                     md: 180,
                                     lg: 180,
@@ -94,23 +94,20 @@ export const PokemonModal = (props) => {
                                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
                             />
                         }
-                        title={<h2 style={{ textAlign: 'center', marginBottom: '-8px' }}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>}
+                        title={<h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>}
                         description={<p><b>Base Experience:</b> {pokemon.base_experience} <br /> <b>Types:</b> {pokemon.types.map(t => t.type.name).join(', ')}</p>}
                     />
 
                     <ProgressAbilityDiv>
                         <div className="abilityWrapper">
-                            <h3 style={{}}>Abilities</h3>
+                            <h3>Abilities:</h3>
                             {pokemon.abilities.map(a =>
                                 <li key={a.id}>- {a.ability.name}</li>
                             )}
 
                             {/* <p>chlorophyll</p> */}
                         </div>
-                        <div style={{
-                            flex: 4
-                            // width: 170
-                        }}>
+                        <div style={{ flex: 4 }}>
                             {pokemon.stats.map(s =>
                                 <div id={s.id}
                                     style={{
@@ -137,26 +134,41 @@ export const PokemonModal = (props) => {
 
 const CardWrap = styled(Card)`
 
-    .ant-card-head-wrapper {
+  .ant-card-head-wrapper {
         margin-top: 15px;
     }
 
   .coverWrapper {
     height: 80px;
   }
+
+  .ant-card-meta-detail {
+    margin-top: -20px;
+
+    h2 {
+      text-align: center;
+      margin-bottom: -8px; 
+    }
+  }
+
   @media screen and (max-width: 575px) {
     .coverWrapper {
-        height: 50px;
+        height: 30px;
     }
     .ant-card-head-wrapper {
         margin-top: -20px !important;
     }
     .ant-avatar-image  {
-        margin-top: -90px !important;
-        margin-bottom: 0px !important;
+        margin-top: -70px !important;
+        margin-bottom: 10px !important;
     }
-   }
-`;
+    .ant-card-meta-detail {
+        h2 {
+            margin-top: 5px;
+        }
+    }
+
+}`;
 
 const ProgressAbilityDiv = styled.div`
      display: flex;
@@ -175,12 +187,12 @@ const ProgressAbilityDiv = styled.div`
     @media screen and (max-width: 575px) {
         display: flex;
         flex-direction: column;
-
+        padding: 0 10px;
         .abilityWrapper {
             display: flex;
             flex-direction: row;
-            align-items: flex-start;
-            justify-content: space-between;
+            align-items: baseline;
+            justify-content: center;
         }
     }
 `;

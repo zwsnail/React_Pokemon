@@ -60,12 +60,12 @@ body {
 
   .ant-modal-content {
     padding: 1.5rem !important;
-    width: 300px !important;
+    width: 65% !important;
     margin: 0 auto;
   }
 
   .ant-card {
-    font-size: 1em !important;
+    font-size: 0.6em !important;
   }
 
   .ant-card-extra img {
@@ -73,11 +73,13 @@ body {
   }
 
   .ant-card-head-title {
-    font-size: 11px !important;
+    font-size: 0.9rem !important;
   }
 
   .ant-card-body {
     padding-bottom: 5px !important;
+    padding-right: 8px !important;
+    padding-left: 8px !important;
   }
 
   .ant-avatar ant-avatar-circle ant-avatar-image {
